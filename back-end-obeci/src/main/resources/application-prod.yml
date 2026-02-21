@@ -1,0 +1,47 @@
+# application-prod.yml
+#
+# Propósito:
+# - Configuração de produção (datasource via variáveis de ambiente e políticas mais seguras de cookie/JWT).
+#
+# Pontos críticos:
+# - app.jwt.require-secret=true exige que APP_JWT_SECRET esteja definido.
+# - Cookies cross-site geralmente exigem secure=true e same-site=None.
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    url: ${OBECI_DB_URL:jdbc:postgresql://the-fool.site:5432/obecidb}
+    username: ${OBECI_DB_USERNAME:obeci}
+    password: ${OBECI_DB_PASSWORD:#Projeto10}
+    driver-class-name: org.postgresql.Driver
+
+server:
+  port: 9090
+
+app:
+  cors:
+    # Em produção, defina explicitamente o(s) domínio(s) do frontend.
+    # DICA: se usar cookies entre domínios, precisa allow-credentials=true e same-site=None.
+    allowed-origins:
+      - http://26.134.41.191:3000
+    allowed-methods: [GET, POST, PUT, DELETE, OPTIONS]
+    allowed-headers: ["*"]
+    allow-credentials: true
+
+  auth:
+    cookie:
+      name: token
+      http-only: true
+      secure: true
+      same-site: None
+      path: /
+      max-age-seconds: 36000
+
+  jwt:
+    # PROD: obrigatória. Defina via variável de ambiente.
+    secret: ${APP_JWT_SECRET:}
+    expiration-seconds: 36000
+    require-secret: true

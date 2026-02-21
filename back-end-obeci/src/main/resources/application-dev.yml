@@ -1,0 +1,47 @@
+# application-dev.yml
+#
+# Propósito:
+# - Configuração de desenvolvimento local (PostgreSQL local) e defaults de segurança (CORS/cookie/JWT).
+#
+# Dependências:
+# - AppCorsProperties (app.cors.*)
+# - AuthCookieProperties / TokenCookieService (app.auth.cookie.*)
+# - JwtProperties / JwtUtil (app.jwt.*)
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/coesterdb
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+server:
+  port: 9090
+
+app:
+  cors:
+    allowed-origins:
+      - http://localhost:3000
+      - http://localhost:3001
+    allowed-methods: [GET, POST, PUT, DELETE, OPTIONS]
+    allowed-headers: ["*"]
+    allow-credentials: true
+
+  auth:
+    cookie:
+      name: token
+      http-only: true
+      secure: false
+      same-site: Lax
+      path: /
+      max-age-seconds: 36000
+
+  jwt:
+    # DEV: pode ficar aqui. Em produção, use variável de ambiente/secret manager.
+    secret: "dev-secret-32-bytes-minimum-0123456789"
+    expiration-seconds: 36000
+    require-secret: false

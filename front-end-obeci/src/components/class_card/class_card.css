@@ -1,0 +1,99 @@
+/*
+ * `src/components/class_card/class_card.css`
+ *
+ * Propósito geral:
+ * - Estilos do componente `ClassCard` (card visual de turma).
+ *
+ * Observação:
+ * - Usa nesting (`&`), dependendo da configuração de CSS do build.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+.class-card {
+  width: 100%;
+  background: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.4rem 1.2rem;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 1.2rem;
+  }
+
+  & .class-card__left {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    min-width: 0;
+  }
+
+  & .class-card__avatar {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    font-size: 2.4rem;
+  }
+
+  & .class-card__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  & .class-card__title {
+    font-family: "Nunito";
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & .class-card__meta {
+    font-family: "Nunito";
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  & .class-card__sep {
+    opacity: 0.6;
+  }
+
+  & .class-card__action {
+    flex: 0 0 auto;
+    padding: 0.9rem 1.4rem;
+    font-size: 1.4rem;
+    font-weight: 900;
+    background: #fedfcd;
+    border-radius: 3.5rem;
+    color: #000;
+    text-decoration: none;
+    font-family: "Nunito";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+
+    &:hover {
+      cursor: pointer;
+      transition: ease-in-out 0.2s all;
+      background: #f2b694;
+    }
+  }
+}

@@ -1,0 +1,439 @@
+{
+  "info": {
+    "name": "OBECI Backend API",
+    "_postman_id": "b4f9c3a1-0000-1111-2222-333344445555",
+    "description": "Coleção para testar endpoints do OBECI com login via cookie HttpOnly",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:9090" }],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"Administrador\",\n  \"email\": \"admin@test.com\",\n  \"password\": \"123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@test.com\",\n  \"password\": \"123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Me (roles)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            },
+            "description": "Retorna username, email e arrayRoles. Requer login prévio (cookie HttpOnly)."
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Escolas (protegido)",
+      "item": [
+        {
+          "name": "Listar escolas",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/escolas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "escolas"]
+            }
+          }
+        },
+        {
+          "name": "Obter escola por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/escolas/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "escolas", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Criar escola",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/escolas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "escolas"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Minha Escola\",\n  \"ativa\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Atualizar escola",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/escolas/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "escolas", ":id"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Escola Atualizada\",\n  \"ativa\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Excluir escola",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/escolas/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "escolas", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Listar por ativo",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/escolas/ativo/:isActive",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "escolas", "ativo", ":isActive"]
+            }
+          }
+        },
+        {
+          "name": "Pesquisar por nome",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/escolas/nome/:nome",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "escolas", "nome", ":nome"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Turmas (protegido)",
+      "item": [
+        {
+          "name": "Listar turmas",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/turmas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "turmas"]
+            }
+          }
+        },
+        {
+          "name": "Obter turma por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/turmas/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "turmas", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Criar turma",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/turmas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "turmas"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Turma 1\",\n  \"escolaId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Atualizar turma",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/turmas/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "turmas", ":id"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Turma 1 - Atualizada\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Excluir turma",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/turmas/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "turmas", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Listar por escola",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/turmas/escola/:escolaId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "turmas", "escola", ":escolaId"]
+            }
+          }
+        },
+        {
+          "name": "Listar por professor",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/turmas/professor/:professorId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "turmas", "professor", ":professorId"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Publicacoes (protegido)",
+      "item": [
+        {
+          "name": "Listar publicacoes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/publicacoes",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "publicacoes"]
+            }
+          }
+        },
+        {
+          "name": "Obter publicacao por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/publicacoes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "publicacoes", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Criar publicacao",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/publicacoes",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "publicacoes"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Nova Publicacao\",\n  \"conteudo\": \"Texto...\",\n  \"turmaId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Atualizar publicacao",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/publicacoes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "publicacoes", ":id"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Publicacao Atualizada\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Excluir publicacao",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/publicacoes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "publicacoes", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Listar por turma",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/publicacoes/turma/:turmaId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "publicacoes", "turma", ":turmaId"]
+            }
+          }
+        },
+        {
+          "name": "Listar por escola",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/publicacoes/escola/:escolaId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "publicacoes", "escola", ":escolaId"]
+            }
+          }
+        },
+        {
+          "name": "Listar por publico",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/publicacoes/public/:isPublic",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "publicacoes", "public", ":isPublic"]
+            }
+          }
+        },
+        {
+          "name": "Listar por username",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/publicacoes/username/:username",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "publicacoes", "username", ":username"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Usuarios (admin)",
+      "item": [
+        {
+          "name": "Listar usuarios",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Obter usuario por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Criar usuario",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"Professor X\",\n  \"email\": \"professorx@test.com\",\n  \"password\": \"123\",\n  \"arrayRoles\": [\"PROFESSOR\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Atualizar usuario",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios", ":id"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"Professor X Atualizado\",\n  \"arrayRoles\": [\"ADMIN\", \"PROFESSOR\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Excluir usuario",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios", ":id"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+# application-test.yml
+#
+# Propósito:
+# - Configuração de testes automatizados.
+# - Usa H2 em memória em modo compatível (MODE=PostgreSQL) para reduzir divergências.
+#
+# Pontos críticos:
+# - ddl-auto=none evita alterações de schema durante testes.
+# - app.admin.enabled=false desativa AdminBootstrap para não poluir dados de teste.
+
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  datasource:
+    url: jdbc:h2:mem:obeci_test;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+server:
+  port: 0
+
+app:
+  admin:
+    enabled: false

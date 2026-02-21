@@ -1,0 +1,311 @@
+/*
+ * `src/app/protected/turmas/turmas.css`
+ *
+ * Propósito geral:
+ * - Estilos da tela de turmas + painel de lembretes.
+ *
+ * Observação:
+ * - Este arquivo usa nesting (`&`), o que depende da configuração de CSS do build.
+ */
+
+.container-principal-turmas {
+  /*  width: 90%;
+  margin: 0 auto; */
+  & .container-lembrete-turmas {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    margin: 2.5rem 2.5rem;
+
+    & .container-header-turmas {
+      /* background-color: black; */
+      & .container-texto {
+        margin-left: 2.5rem;
+      }
+      width: 87.5%;
+      height: 79.9rem;
+
+      & .container-turmas {
+        height: 80%;
+        width: 100%;
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      /* Mensagem de estado vazio (sem turmas) */
+      & .container-turmas .empty-message {
+        width: 100%;
+        min-height: 24rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: clamp(2rem, 3.5vw, 3.2rem);
+        color: #222;
+        background: rgba(0, 0, 0, 0.03);
+        border-radius: 1.5rem;
+        padding: 3rem 1.5rem;
+      }
+
+      & .grupo-escola {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      & .separator-escola {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+      }
+
+      & .separator-escola h4 {
+        font-size: 2.4rem;
+        font-family: "Nunito";
+        color: #000;
+        white-space: nowrap;
+      }
+
+      & .linha-ofuscada {
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+        opacity: 0.5;
+      }
+
+      & .turmas-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+
+.lembrete {
+  width: 49.9rem;
+  height: 79.9rem;
+  background: var(--cor2-obeci);
+  border-radius: 5rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.lembrete h2 {
+  font-size: 3rem;
+  color: var(--cor-branco);
+  margin-bottom: 1rem;
+}
+
+.lista-lembretes {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-right: 0.5rem;
+}
+
+.item-lembrete {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.item-lembrete p {
+  font-size: 1.5rem;
+  color: #333;
+  word-break: break-word;
+  flex: 1;
+  font-family: inherit;
+  /* Preserva quebras de linha digitadas no textarea */
+  white-space: pre-wrap;
+}
+
+.acoes-lembrete {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.botao-editar {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0 0.4rem;
+  opacity: 0.85;
+}
+
+.botao-editar:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.lembrete-botoes {
+  display: flex;
+  gap: 1rem;
+}
+
+.botao-cancelar {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.25);
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.botao-cancelar:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.botao-excluir {
+  background: none;
+  border: none;
+  color: #ff4444;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+.novo-lembrete-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lembrete-textarea {
+  width: 100%;
+  min-height: 60px;
+  max-height: 150px;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  resize: none;
+  overflow-y: auto;
+  font-size: 1.5rem;
+  font-family: inherit;
+  background-color: #f8f8f8;
+}
+
+.lembrete-textarea:focus {
+  outline: 2px solid var(--cor-primaria-obeci);
+}
+
+.botao-salvar {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: var(--cor3-obeci);
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.botao-salvar:hover {
+  background-color: var(--cor4-obeci);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .container-principal-turmas .container-lembrete-turmas {
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .container-principal-turmas
+    .container-lembrete-turmas
+    .container-header-turmas {
+    width: 100%;
+    height: auto;
+  }
+  .container-principal-turmas
+    .container-lembrete-turmas
+    .container-header-turmas
+    .container-turmas {
+    height: auto;
+    max-height: 70vh;
+  }
+  .lembrete {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-principal-turmas .container-lembrete-turmas {
+    margin: 1.5rem;
+    gap: 1.5rem;
+  }
+  .container-principal-turmas
+    .container-lembrete-turmas
+    .container-header-turmas
+    .separator-escola
+    h4 {
+    font-size: 2rem;
+  }
+  .container-principal-turmas
+    .container-lembrete-turmas
+    .container-header-turmas
+    .turmas-grid {
+    gap: 0.5rem;
+  }
+  .container-principal-turmas
+    .container-lembrete-turmas
+    .container-header-turmas
+    .container-turmas
+    .empty-message {
+    min-height: 18rem;
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    padding: 2rem 1rem;
+  }
+  .lembrete {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  .lembrete h2 {
+    font-size: 2.2rem;
+  }
+  .botao-salvar {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-principal-turmas
+    .container-lembrete-turmas
+    .container-header-turmas
+    .container-turmas {
+    padding: 1.5rem;
+  }
+  .lembrete-textarea {
+    min-height: 48px;
+  }
+}
+
