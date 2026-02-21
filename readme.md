@@ -207,6 +207,5 @@ npm run lint
 
 ## 9) O que **não** existe neste repositório
 
-- Não há `Dockerfile`/`docker-compose.yml` prontos.
-- Não há pipeline CI/CD versionado aqui.
+- Não há `Dockerfile`/`docker-compose.yml` prontos, usuario vai ter que criar o próprio
 
